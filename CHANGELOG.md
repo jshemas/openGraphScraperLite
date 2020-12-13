@@ -1,0 +1,7 @@
+# Change Log
+
+## 1.1.0
+- Setting up the openGraphScraperLite repo
+
+## 1.0.0
+- First version of openGraphScraperLite!
