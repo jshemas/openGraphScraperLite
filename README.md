@@ -1,7 +1,5 @@
 # This module was meant to be a proof of concept. You will probably run into a bunch of cors issues using this since it's making the requests from the browser. Using a reverse proxy libraries like https://github.com/Rob--W/cors-anywhere might help solve the problem, but you are probably better off making the requests in a backend service then pass in the html into openGraphScraper.
 
-reverse proxy libraries
-
 # openGraphScraperLite
 
 [![Node.js CI](https://github.com/jshemas/openGraphScraperLite/workflows/Node.js%20CI/badge.svg?branch=master)](https://github.com/jshemas/openGraphScraperLite/actions?query=branch%3Amaster)
