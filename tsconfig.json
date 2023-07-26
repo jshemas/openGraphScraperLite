@@ -1,0 +1,21 @@
+{
+  "include": [
+    "index.ts",
+    "lib/**/*"
+  ],
+  "exclude": [
+    "tests/**/*"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2017"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "target": "es2017"
+  }
+}

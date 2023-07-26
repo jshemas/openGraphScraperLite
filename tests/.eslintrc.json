@@ -1,20 +1,32 @@
 {
+  "root": true,
   "extends": [
-    "../.eslintrc.json",
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:promise/recommended",
     "plugin:mocha/recommended"
   ],
+  "plugins": [
+    "mocha"
+  ],
   "env": {
-    "commonjs": true,
-    "node": true,
     "mocha": true
   },
-  "globals": {
-    "expect": "readonly",
-    "sinon": "readonly"
+  "parserOptions": {
+    "project": "./tsconfig.tests.json"
   },
   "rules": {
+    "@typescript-eslint/no-unused-expressions": 0,
     "func-names": 0,
+    "import/extensions": 0,
+    "import/no-unresolved": 0,
+    "max-len": ["error", {
+      "code": 120,
+      "ignoreStrings": true,
+      "ignoreTrailingComments": true
+    }],
     "no-console": 0,
+    "no-param-reassign": "off",
     "no-unused-expressions": 0,
     "prefer-arrow-callback": 0,
     "promise/always-return": 0
