@@ -10,14 +10,13 @@ import type { OpenGraphScraperOptions, OgObject } from './lib/types';
  * @returns {Promise} Promise Object with the Open Graph results
  */
 export default function run(options: OpenGraphScraperOptions): Promise<ErrorResult | SuccessResult>;
-type SuccessResult = {
+export type SuccessResult = {
     error: false;
     html: string;
     result: OgObject;
 };
-type ErrorResult = {
+export type ErrorResult = {
     error: true;
     html: undefined;
     result: OgObject;
 };
-export {};
