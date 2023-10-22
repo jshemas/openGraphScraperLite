@@ -1,22 +1,17 @@
 {
-  "settings": {
-    "react": {
-      "version": "latest"
-    }
-  },
   "extends": [
-    "airbnb",
+    "airbnb-base",
+    "airbnb-typescript/base",
     "plugin:promise/recommended"
   ],
   "plugins": [
-    "mocha",
     "promise"
   ],
-  "env": {
-    "commonjs": true,
-    "node": true
+  "parserOptions": {
+    "project": "./tsconfig.json"
   },
   "rules": {
+    "import/no-named-as-default": 0,
     "max-len": ["error", {
       "code": 120,
       "ignoreStrings": true,
