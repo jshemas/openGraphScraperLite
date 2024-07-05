@@ -204,7 +204,9 @@ function fallback(ogObject, options, $, body) {
         ogObject.charset = charsetRegEx.test(content) ? charsetRegEx.exec(content)[1] : 'UTF-8';
     }
     else if (body) {
-        ogObject.charset = chardet_1.default.detect(Buffer.from(body)) || '';
+        const encoder = new TextEncoder();
+        const uint8Array = encoder.encode(body);
+        ogObject.charset = chardet_1.default.detect(uint8Array) || '';
     }
     return ogObject;
 }
