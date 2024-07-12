@@ -6,7 +6,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist/ && tsc",
     "ci": "npm run eslint && npm run build && npm run test",
     "eslint:fix": "eslint . --ext .js,.ts --fix",
     "eslint": "eslint . --ext .js,.ts",
@@ -61,6 +61,7 @@
   "keywords": [
     "app links",
     "dublin core",
+    "json ld",
     "meta tags",
     "metadata",
     "og",

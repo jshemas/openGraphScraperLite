@@ -8,11 +8,11 @@
  * @typeParam {boolean} [onlyGetOpenGraphInfo] - Only fetch open graph info and don't fall back on anything else.
  * @typeParam {CustomMetaTags} [customMetaTags] - Here you can define custom meta tags you want to scrape.
  */
-export type OpenGraphScraperOptions = {
+export interface OpenGraphScraperOptions {
   customMetaTags?: CustomMetaTags[];
   html?: string;
   onlyGetOpenGraphInfo?: boolean;
-};
+}
 
 /**
  * Options for isURL method in Validator.js
@@ -26,7 +26,7 @@ export type OpenGraphScraperOptions = {
  * @typeParam validate_length - if set as false isURL will skip string length validation (IE maximum is 2083)
  *
  */
-export type ValidatorSettings = {
+export interface ValidatorSettings {
   allow_fragments: boolean;
   allow_protocol_relative_urls: boolean;
   allow_query_components: boolean;
@@ -39,7 +39,7 @@ export type ValidatorSettings = {
   require_tld: boolean;
   require_valid_protocol: boolean;
   validate_length: boolean;
-};
+}
 
 /**
  * The type for user defined custom meta tags you want to scrape.
@@ -48,47 +48,48 @@ export type ValidatorSettings = {
  * @typeParam {string} property - meta tag name/property attribute
  * @typeParam {string} fieldName - name of the result variable
  */
-type CustomMetaTags = {
+export interface CustomMetaTags {
   fieldName: string;
   multiple: boolean;
   property: string;
-};
+}
 
-export type TwitterImageObject = {
+export interface TwitterImageObject {
   alt?: string;
   height?: number;
   url: string;
   width?: number;
-};
+}
 
-export type TwitterPlayerObject = {
+export interface TwitterPlayerObject {
   height?: number;
   stream?: string;
   url: string;
   width?: number;
-};
+}
 
-export type ImageObject = {
+export interface ImageObject {
   height?: number;
   type?: string;
   url: string;
   width?: number;
-};
+  alt?: string
+}
 
-export type VideoObject = {
+export interface VideoObject {
   height?: number;
   type?: string;
   url: string;
   width?: number;
-};
+}
 
-export type MusicSongObject = {
+export interface MusicSongObject {
   disc?: string;
   track?: number;
   url: string;
-};
+}
 
-export type OgObjectInteral = {
+export interface OgObjectInteral {
   alAndroidAppName?: string;
   alAndroidClass?: string;
   alAndroidPackage?: string;
@@ -116,7 +117,9 @@ export type OgObjectInteral = {
   articleAuthor?: string;
   articleExpirationTime?: string;
   articleModifiedTime?: string;
+  articlePublishedDate?: string;
   articlePublishedTime?: string;
+  articleModifiedDate?: string;
   articlePublisher?: string;
   articleSection?: string;
   articleTag?: string;
@@ -135,7 +138,7 @@ export type OgObjectInteral = {
   businessContactDataRegion?: string;
   businessContactDataStreetAddress?: string;
   charset?: string;
-  customMetaTags?: { [key: string]: string | undefined };
+  customMetaTags?: Record<string, string | string[]>
   dcContributor?: string;
   dcCoverage?: string;
   dcCreator?: string;
@@ -157,6 +160,8 @@ export type OgObjectInteral = {
   error?: string;
   errorDetails?: Error;
   favicon?: string;
+  fbAppId?: string;
+  jsonLD?: object[];
   modifiedTime?: string;
   musicAlbum?: string;
   musicAlbumDisc?: string;
@@ -165,12 +170,14 @@ export type OgObjectInteral = {
   musicCreator?: string;
   musicDuration?: string;
   musicMusician?: string;
+  musicPlaylist?: string;
+  musicRadioStation?: string;
   musicReleaseDate?: string;
   musicSong?: MusicSongObject[];
-  musicSongDisc?: string | string[] | null[];
-  musicSongProperty?: string | string[] | null[];
-  musicSongTrack?: number | string[] | null[];
-  musicSongUrl?: string | string[] | null[];
+  musicSongDisc?: string[];
+  musicSongProperty?: string[];
+  musicSongTrack?: string[];
+  musicSongUrl?: string[];
   ogArticleAuthor?: string;
   ogArticleExpirationTime?: string;
   ogArticleModifiedTime?: string;
@@ -186,16 +193,19 @@ export type OgObjectInteral = {
   ogDate?: string;
   ogDescription?: string;
   ogDeterminer?: string;
+  ogEpisode?: string;
   ogImage?: ImageObject[];
-  ogImageHeight?: string | string[] | null[];
-  ogImageProperty?: string | string[] | null[];
-  ogImageSecureURL?: string | string[] | null[];
-  ogImageType?: string | string[] | null[];
-  ogImageURL?: string | string[] | null[];
-  ogImageWidth?: string | string[] | null[];
+  ogImageAlt?: string[];
+  ogImageHeight?: string[];
+  ogImageProperty?: string[];
+  ogImageSecureURL?: string[];
+  ogImageType?: string[];
+  ogImageURL?: string[];
+  ogImageWidth?: string[];
   ogLocale?: string;
   ogLocaleAlternate?: string;
   ogLogo?: string;
+  ogMovie?: string;
   ogPriceAmount?: string;
   ogPriceCurrency?: string;
   ogProductAvailability?: string;
@@ -208,12 +218,23 @@ export type OgObjectInteral = {
   ogType?: string;
   ogUrl?: string;
   ogVideo?: VideoObject[];
+  ogVideoActor?: string;
   ogVideoActorId?: string;
-  ogVideoHeight?: string | string[] | null[];
-  ogVideoProperty?: string | string[] | null[];
+  ogVideoActorRole?: string;
+  ogVideoDirector?: string;
+  ogVideoDuration?: string;
+  ogVideoHeight?: string[];
+  ogVideoOther?: string;
+  ogVideoProperty?: string[];
+  ogVideoReleaseDate?: string;
   ogVideoSecureURL?: string;
-  ogVideoType?: string | string[] | null[];
-  ogVideoWidth?: string | string[] | null[];
+  ogVideoSeries?: string;
+  ogVideoTag?: string;
+  ogVideoTvShow?: string;
+  ogVideoType?: string[];
+  ogVideoWidth?: string[];
+  ogVideoWriter?: string;
+  ogWebsite?: string;
   placeLocationLatitude?: string;
   placeLocationLongitude?: string;
   profileFirstName?: string;
@@ -222,6 +243,7 @@ export type OgObjectInteral = {
   profileUsername?: string;
   publishedTime?: string;
   releaseDate?: string;
+  requestUrl?: string;
   restaurantContactInfoCountryName?: string;
   restaurantContactInfoEmail?: string;
   restaurantContactInfoLocality?: string;
@@ -236,6 +258,7 @@ export type OgObjectInteral = {
   restaurantVariationPriceAmount?: string;
   restaurantVariationPriceCurrency?: string;
   success?: boolean;
+  twitterAccount?: string;
   twitterAppIdGooglePlay?: string;
   twitterAppIdiPad?: string;
   twitterAppIdiPhone?: string;
@@ -250,30 +273,32 @@ export type OgObjectInteral = {
   twitterCreatorId?: string;
   twitterDescription?: string;
   twitterImage?: TwitterImageObject[];
-  twitterImageAlt?: string | string[] | null[];
-  twitterImageHeight?: string | string[] | null[];
-  twitterImageProperty?: string | string[] | null[];
-  twitterImageSrc?: string | string[] | null[];
-  twitterImageWidth?: string | string[] | null[];
+  twitterImageAlt?: string[];
+  twitterImageHeight?: string[];
+  twitterImageProperty?: string[];
+  twitterImageSrc?: string[];
+  twitterImageWidth?: string[];
   twitterPlayer?: TwitterPlayerObject[];
-  twitterPlayerHeight?: string | string[] | null[];
-  twitterPlayerProperty?: string | string[] | null[];
-  twitterPlayerStream?: string | string[] | null[];
+  twitterPlayerHeight?: string[];
+  twitterPlayerProperty?: string[];
+  twitterPlayerStream?: string[];
   twitterPlayerStreamContentType?: string;
-  twitterPlayerWidth?: string | string[] | null[];
+  twitterPlayerWidth?: string[];
   twitterSite?: string;
   twitterSiteId?: string;
   twitterTitle?: string;
   twitterUrl?: string;
   updatedTime?: string;
-};
+}
 
+// Omit values from mediaMapperProperties
 export type OgObject = Omit<
 OgObjectInteral,
 'musicSongDisc' |
 'musicSongProperty' |
 'musicSongTrack' |
 'musicSongUrl' |
+'ogImageAlt' |
 'ogImageHeight' |
 'ogImageProperty' |
 'ogImageSecureURL' |
