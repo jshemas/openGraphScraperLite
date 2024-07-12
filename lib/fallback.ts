@@ -180,7 +180,9 @@ export function fallback(ogObject: OgObjectInteral, options: OpenGraphScraperOpt
     const charsetRegEx = /charset=([^()<>@,;:"/[\]?.=\s]*)/i;
     ogObject.charset = charsetRegEx.test(content) ? charsetRegEx.exec(content)[1] : 'UTF-8';
   } else if (body) {
-    ogObject.charset = chardet.detect(Buffer.from(body)) || '';
+    const encoder = new TextEncoder();
+    const uint8Array = encoder.encode(body);
+    ogObject.charset = chardet.detect(uint8Array) || '';
   }
 
   return ogObject;
