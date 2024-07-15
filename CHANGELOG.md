@@ -3,6 +3,7 @@
 ## 2.1.0
 
 - Sync changes from openGraphScraper
+- Adding better support for cjs and esm
 - Fix issue with the `charset` fallback. Replace Buffer.from with Uint8Array since body is always html
 - Updating dependencies
 
