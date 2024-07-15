@@ -1,7 +1,7 @@
 {
   "name": "open-graph-scraper-lite",
   "description": "Javascript scraper module for Open Graph and Twitter Card info",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
   "types": "./types/index.d.ts",
