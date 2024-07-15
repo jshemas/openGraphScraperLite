@@ -3,11 +3,21 @@
   "description": "Javascript scraper module for Open Graph and Twitter Card info",
   "version": "2.0.0",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "scripts": {
-    "build": "tsc",
-    "ci": "npm run eslint && npm run build && npm run test",
+    "build:cjs": "tsc --project tsconfig.build.json --module commonjs --outDir dist/cjs/",
+    "build:declaration": "tsc --project tsconfig.declaration.json --module node16 --moduleResolution node16",
+    "build:esm": "tsc --project tsconfig.build.json --module node16 --moduleResolution node16 --outDir dist/esm/",
+    "build": "rm -rf dist/ && npm run build:cjs && npm run build:esm",
+    "ci": "npm run eslint && npm run build && npm run build:declaration && npm run test",
     "eslint:fix": "eslint . --ext .js,.ts --fix",
     "eslint": "eslint . --ext .js,.ts",
     "mocha:unit": "nyc --reporter=html --reporter=text --exclude=tests/ ts-mocha --recursive \"./tests/unit/**/*.spec.ts\"",
@@ -26,32 +36,33 @@
   "dependencies": {
     "chardet": "^2.0.0",
     "cheerio": "^1.0.0-rc.12",
-    "validator": "^13.11.0"
+    "validator": "^13.12.0"
   },
   "files": [
     "/dist",
-    "CHANGELOG.md",
-    "index.ts"
+    "/types",
+    "index.ts",
+    "CHANGELOG.md"
   ],
   "devDependencies": {
-    "@snyk/protect": "^1.1236.0",
-    "@types/mocha": "^10.0.3",
-    "@types/node": "^18.16.18",
-    "@types/validator": "^13.11.5",
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
-    "chai": "^4.3.10",
-    "eslint": "^8.52.0",
+    "@snyk/protect": "^1.1292.1",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^18.19.39",
+    "@types/validator": "^13.12.0",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "chai": "^4.4.1",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-mocha": "^10.2.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "mocha": "^10.2.0",
-    "nyc": "^15.1.0",
-    "sinon": "^17.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-mocha": "^10.4.3",
+    "eslint-plugin-promise": "^6.4.0",
+    "mocha": "^10.6.0",
+    "nyc": "^17.0.0",
+    "sinon": "^18.0.0",
     "ts-mocha": "^10.0.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.5.3"
   },
   "repository": {
     "type": "git",
@@ -61,6 +72,7 @@
   "keywords": [
     "app links",
     "dublin core",
+    "json ld",
     "meta tags",
     "metadata",
     "og",

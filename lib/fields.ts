@@ -1,10 +1,18 @@
+import type { OgObjectInteral } from './types';
+
+type Fields = {
+  multiple: boolean;
+  property: string;
+  fieldName: keyof OgObjectInteral;
+}[];
+
 /**
  * array of meta tags ogs is looking for
  *
  * @return {array} array of meta tags
  *
  */
-const fields = [
+const fields: Fields = [
   {
     multiple: false,
     property: 'og:title',
@@ -21,6 +29,11 @@ const fields = [
     fieldName: 'ogLogo',
   },
   {
+    multiple: false,
+    property: 'og:website',
+    fieldName: 'ogWebsite',
+  },
+  {
     multiple: true,
     property: 'og:image',
     fieldName: 'ogImageProperty',
@@ -29,6 +42,11 @@ const fields = [
     multiple: true,
     property: 'og:image:url',
     fieldName: 'ogImageURL',
+  },
+  {
+    multiple: true,
+    property: 'og:image:alt',
+    fieldName: 'ogImageAlt',
   },
   {
     multiple: true,
@@ -151,14 +169,64 @@ const fields = [
     fieldName: 'ogVideoProperty',
   },
   {
-    multiple: true,
+    multiple: false,
     property: 'og:video:secure_url',
     fieldName: 'ogVideoSecureURL',
   },
   {
-    multiple: true,
+    multiple: false,
+    property: 'og:movie',
+    fieldName: 'ogMovie',
+  },
+  {
+    multiple: false,
+    property: 'og:episode',
+    fieldName: 'ogEpisode',
+  },
+  {
+    multiple: false,
+    property: 'og:video:actor',
+    fieldName: 'ogVideoActor',
+  },
+  {
+    multiple: false,
     property: 'og:video:actor:id',
     fieldName: 'ogVideoActorId',
+  },
+  {
+    multiple: false,
+    property: 'og:video:actor:role',
+    fieldName: 'ogVideoActorRole',
+  },
+  {
+    multiple: false,
+    property: 'og:video:director',
+    fieldName: 'ogVideoDirector',
+  },
+  {
+    multiple: false,
+    property: 'og:video:writer',
+    fieldName: 'ogVideoWriter',
+  },
+  {
+    multiple: false,
+    property: 'og:video:duration',
+    fieldName: 'ogVideoDuration',
+  },
+  {
+    multiple: false,
+    property: 'og:video:release_date',
+    fieldName: 'ogVideoReleaseDate',
+  },
+  {
+    multiple: false,
+    property: 'og:video:Tag',
+    fieldName: 'ogVideoTag',
+  },
+  {
+    multiple: false,
+    property: 'og:video:series',
+    fieldName: 'ogVideoSeries',
   },
   {
     multiple: true,
@@ -174,6 +242,16 @@ const fields = [
     multiple: true,
     property: 'og:video:type',
     fieldName: 'ogVideoType',
+  },
+  {
+    multiple: false,
+    property: 'og:video:tv_show',
+    fieldName: 'ogVideoTvShow',
+  },
+  {
+    multiple: false,
+    property: 'og:video:other',
+    fieldName: 'ogVideoOther',
   },
   {
     multiple: false,
@@ -204,6 +282,11 @@ const fields = [
     multiple: false,
     property: 'twitter:creator:id',
     fieldName: 'twitterCreatorId',
+  },
+  {
+    multiple: false,
+    property: 'twitter:account',
+    fieldName: 'twitterAccount',
   },
   {
     multiple: false,
@@ -261,7 +344,7 @@ const fields = [
     fieldName: 'twitterPlayerStream',
   },
   {
-    multiple: true,
+    multiple: false,
     property: 'twitter:player:stream:content_type',
     fieldName: 'twitterPlayerStreamContentType',
   },
@@ -311,6 +394,11 @@ const fields = [
     fieldName: 'twitterAppUrlGooglePlay',
   },
   {
+    multiple: false,
+    property: 'music:playlist',
+    fieldName: 'musicPlaylist',
+  },
+  {
     multiple: true,
     property: 'music:song',
     fieldName: 'musicSongProperty',
@@ -331,7 +419,7 @@ const fields = [
     fieldName: 'musicSongUrl',
   },
   {
-    multiple: true,
+    multiple: false,
     property: 'music:musician',
     fieldName: 'musicMusician',
   },
@@ -346,12 +434,17 @@ const fields = [
     fieldName: 'musicDuration',
   },
   {
-    multiple: true,
+    multiple: false,
+    property: 'music:radio_station',
+    fieldName: 'musicRadioStation',
+  },
+  {
+    multiple: false,
     property: 'music:creator',
     fieldName: 'musicCreator',
   },
   {
-    multiple: true,
+    multiple: false,
     property: 'music:album',
     fieldName: 'musicAlbum',
   },
@@ -849,6 +942,11 @@ const fields = [
     multiple: false,
     property: 'al:web:should_fallback',
     fieldName: 'alWebShouldFallback',
+  },
+  {
+    multiple: false,
+    property: 'fb:app_id',
+    fieldName: 'fbAppId',
   },
 ];
 

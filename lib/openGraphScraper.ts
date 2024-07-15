@@ -1,5 +1,6 @@
 import extractMetaTags from './extract';
 import {
+  isCustomMetaTagsValid,
   optionSetup,
 } from './utils';
 import type { OpenGraphScraperOptions } from './types';
@@ -15,6 +16,8 @@ export default async function setOptionsAndReturnOpenGraphResults(ogsOptions: Op
   const { options } = optionSetup(ogsOptions);
 
   if (!options.html) throw new Error('Must pass in `html` option.');
+
+  if (!isCustomMetaTagsValid(options.customMetaTags ?? [])) throw new Error('Invalid Custom Meta Tags');
 
   const ogObject = extractMetaTags(options.html, options);
   ogObject.success = true;

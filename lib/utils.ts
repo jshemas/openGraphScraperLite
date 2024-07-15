@@ -1,5 +1,10 @@
 import validator from 'validator';
-import type { ValidatorSettings, OpenGraphScraperOptions } from './types';
+import type {
+  CustomMetaTags,
+  OgObjectInteral,
+  OpenGraphScraperOptions,
+  ValidatorSettings,
+} from './types';
 
 export const defaultUrlValidatorSettings = {
   allow_fragments: true,
@@ -36,7 +41,7 @@ export function isUrlValid(url: string, urlValidatorSettings: ValidatorSettings)
  *
  */
 export function findImageTypeFromUrl(url: string): string {
-  let type: string = url.split('.').pop() || '';
+  let type: string = url.split('.').pop() ?? '';
   [type] = type.split('?');
   return type;
 }
@@ -60,7 +65,7 @@ export function isImageTypeValid(type: string): boolean {
  * @return {object} object without nested undefs
  *
  */
-export function removeNestedUndefinedValues(object: { [key: string]: any }): { [key: string]: any } {
+export function removeNestedUndefinedValues(object: Record<string, any>): OgObjectInteral {
   Object.entries(object).forEach(([key, value]) => {
     if (value && typeof value === 'object') removeNestedUndefinedValues(value);
     else if (value === undefined) delete object[key];
@@ -82,4 +87,28 @@ export function optionSetup(ogsOptions: OpenGraphScraperOptions): { options: Ope
   };
 
   return { options };
+}
+
+/**
+ * Checks if image type is valid
+ *
+ * @param {string} type - type to be checked
+ * @return {boolean} boolean value if type is value
+ *
+ */
+export function isCustomMetaTagsValid(customMetaTags: CustomMetaTags[]): boolean {
+  if (!Array.isArray(customMetaTags)) return false;
+
+  let result = true;
+  customMetaTags.forEach((customMetaTag) => {
+    if (typeof customMetaTag === 'object') {
+      if (!('fieldName' in customMetaTag) || typeof customMetaTag.fieldName !== 'string') result = false;
+      if (!('multiple' in customMetaTag) || typeof customMetaTag.multiple !== 'boolean') result = false;
+      if (!('property' in customMetaTag) || typeof customMetaTag.property !== 'string') result = false;
+    } else {
+      result = false;
+    }
+  });
+
+  return result;
 }
