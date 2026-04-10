@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.1.1
+
+- Updating dependencies
+
 ## 2.1.0
 
 - Sync changes from openGraphScraper
